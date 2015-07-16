@@ -73,8 +73,12 @@ def test_nontrivial_transform():
         '/metadata                ->  /metadata',
         '/tokenization_method     ->  /metadata/tokenization_method',
         '/name                    ->  /holder_name',
-        '/cvc_check               ->  py::(lambda x: x != "unchecked")          ->  /verified',
+        '/cvc_check               ->  cvc_bool                                  ->  /verified',
         '/exp_year -> /exp_month  ->  py::(lambda (x, y): "{}-{}".format(x, y)) ->  /expiration',
+
+        ctx=dict(
+            cvc_bool=(lambda x: x != "unchecked"),
+        )
     )
     assert xform(flat_card) == card
 
