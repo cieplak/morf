@@ -8,33 +8,6 @@ morf is a tool for transforming data in python
 Illustrative Example
 --------------------
 
-.. code:: python
-
-    from morf import Morphism
-
-
-    flatten_msg = Morphism.compile(
-        '/headers  ->  /',
-        '/body     ->  /body',
-    )
-    message = dict(
-        headers=dict(
-            sender='2PvSNshPmKvAuw2tcjY6C',
-            receiver='t71mVtgKqWtUSj4k3fwQtK',
-            salt='efVCYqSPeL7qxRm7MDB3jL',
-            mac='diHN0NNRv452Y+ZbUv4ejJxo7nassw0npznOccjfWtA=',
-        ),
-        body='MXHgDEw2CwFNoj0akdmCIzM4TV6hXJwg+Zjlcz3yEMg=\n',
-    )
-    flat_message = dict(
-        sender='2PvSNshPmKvAuw2tcjY6C',
-        receiver='t71mVtgKqWtUSj4k3fwQtK',
-        salt='efVCYqSPeL7qxRm7MDB3jL',
-        mac='diHN0NNRv452Y+ZbUv4ejJxo7nassw0npznOccjfWtA=',
-        body='MXHgDEw2CwFNoj0akdmCIzM4TV6hXJwg+Zjlcz3yEMg=\n',
-    )
-    assert flatten_msg(message) == flat_message
-
 
 .. code:: python
 
@@ -110,6 +83,36 @@ Illustrative Example
         'verified': False,
     }
     assert nest_card(flat_card) == nested_card
+
+
+
+.. code:: python
+
+    from morf import Morphism
+
+
+    flatten_msg = Morphism.compile(
+        '/headers  ->  /',
+        '/body     ->  /body',
+    )
+    message = dict(
+        headers=dict(
+            sender='2PvSNshPmKvAuw2tcjY6C',
+            receiver='t71mVtgKqWtUSj4k3fwQtK',
+            salt='efVCYqSPeL7qxRm7MDB3jL',
+            mac='diHN0NNRv452Y+ZbUv4ejJxo7nassw0npznOccjfWtA=',
+        ),
+        body='MXHgDEw2CwFNoj0akdmCIzM4TV6hXJwg+Zjlcz3yEMg=\n',
+    )
+    flat_message = dict(
+        sender='2PvSNshPmKvAuw2tcjY6C',
+        receiver='t71mVtgKqWtUSj4k3fwQtK',
+        salt='efVCYqSPeL7qxRm7MDB3jL',
+        mac='diHN0NNRv452Y+ZbUv4ejJxo7nassw0npznOccjfWtA=',
+        body='MXHgDEw2CwFNoj0akdmCIzM4TV6hXJwg+Zjlcz3yEMg=\n',
+    )
+    assert flatten_msg(message) == flat_message
+
 
 
 Development
